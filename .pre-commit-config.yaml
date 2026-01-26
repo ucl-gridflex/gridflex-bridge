@@ -1,0 +1,43 @@
+ci:
+  autoupdate_schedule: quarterly
+  skip: []
+
+default_language_version:
+  python: python3
+
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.14
+    hooks:
+      - id: ruff
+        args: ["--fix"]
+      - id: ruff-format
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+        args: ["--maxkb=1024"]
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.36.1
+    hooks:
+      - id: check-gitlab-ci
+      - id: check-github-workflows
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.20.0
+    hooks:
+      - id: markdownlint-cli2
+        args: ["--config", ".markdownlint.jsonc"]
+        additional_dependencies: []
+  - repo: local
+    hooks:
+      - id: import-linter
+        name: import-linter
+        entry: lint-imports
+        language: system
+        pass_filenames: false
+        stages: [manual]

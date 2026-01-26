@@ -1,0 +1,67 @@
+[build-system]
+requires = ["hatchling>=1.22"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gridflex-bridge"
+version = "0.1.0"
+description = "Foundational monorepo for the GridFlex Bridge research platform."
+readme = "README.md"
+requires-python = "~=3.14"
+authors = [{ name = "UCL BSEER GridFlex Team" }]
+dynamic = ["dependencies", "optional-dependencies"]
+
+[tool.ruff]
+line-length = 80
+target-version = "py314"
+src = ["src", "packages"]
+extend-exclude = ["docs", "build", "dist", "scripts/generated"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true
+preview = true
+
+[tool.ruff.lint]
+select = [
+    "A",
+    "ARG",
+    "B",
+    "BLE",
+    "C4",
+    "COM",
+    "D",
+    "E",
+    "F",
+    "I",
+    "ISC",
+    "N",
+    "NPY",
+    "PERF",
+    "PGH",
+    "PIE",
+    "PL",
+    "PT",
+    "PTH",
+    "RET",
+    "RUF",
+    "S",
+    "SIM",
+    "T10",
+    "T20",
+    "UP",
+    "W",
+]
+ignore = ["ANN101", "ANN102", "D203", "D212", "S101"]
+fixable = ["ALL"]
+preview = true
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S311"]
+"**/__init__.py" = ["F401"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["gridflex_bridge"]
+combine-as-imports = true
+force-sort-within-sections = true

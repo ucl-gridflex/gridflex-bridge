@@ -1,0 +1,43 @@
+{
+	"name": "GridFlex",
+	"image": "mcr.microsoft.com/devcontainers/python:2-3.14-trixie",
+	"features": {
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"installOhMyZsh": "true",
+			"installZsh": "true",
+			"upgradePackages": "true"
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"charliermarsh.ruff",
+				"ms-toolsai.jupyter",
+				"streetsidesoftware.code-spell-checker",
+				"GitHub.copilot",
+				"ms-mssql.mssql",
+				"duckdb.duckdb",
+				"mechatroner.rainbow-csv",
+				"DavidAnson.vscode-markdownlint"
+			],
+			"settings": {
+				"python.defaultInterpreterPath": "/usr/local/bin/python",
+				"python.testing.pytestEnabled": true,
+				"python.testing.unittestEnabled": false,
+				"editor.formatOnSave": true,
+				"[python]": {
+					"editor.defaultFormatter": "charliermarsh.ruff",
+					"editor.codeActionsOnSave": {
+						"source.organizeImports.ruff": "explicit",
+						"source.fixAll": "always"
+					}
+				},
+				"ruff.importStrategy": "fromEnvironment"
+			}
+		}
+	},
+	"forwardPorts": [],
+	"postCreateCommand": "bash .devcontainer/post-create.sh"
+}
